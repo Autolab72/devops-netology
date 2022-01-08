@@ -131,3 +131,7 @@ batch - запускается когда уровень загрузки сис
 vagrant suspend
 vagrant halt
 ```
+
+
+
+fix 08012022
