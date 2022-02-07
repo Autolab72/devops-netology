@@ -20,8 +20,8 @@ openat(AT_FDCWD, "/etc/magic", O_RDONLY) = 3
 openat(AT_FDCWD, "/usr/share/misc/magic.mgc", O_RDONLY) = 3
 ...
 nano /etc/magic
-# Magic local data for file(1) command.
-# Insert here your local magic data. Format is described in magic(5).
+ Magic local data for file(1) command.
+ Insert here your local magic data. Format is described in magic(5).
 	#сюда помещаются какието данные для определиения типа файла
 nano /usr/share/misc/magic.mgc
 	#похоже, то, что нужно - какая-то база.
@@ -32,15 +32,31 @@ nano /usr/share/misc/magic.mgc
 
 4)Занимают ли зомби-процессы какие-то ресурсы в ОС (CPU, RAM, IO)?
 
+ Они занимают только место в таблице процессов
+
 
 5)В iovisor BCC есть утилита opensnoop:
 root@vagrant:~# dpkg -L bpfcc-tools | grep sbin/opensnoop
 /usr/sbin/opensnoop-bpfcc
 На какие файлы вы увидели вызовы группы open за первую секунду работы утилиты? Воспользуйтесь пакетом bpfcc-tools для Ubuntu 20.04. Дополнительные сведения по установке.
 
+$ sudo apt-get install bpfcc-tools linux-headers-$(uname -r)
+$ dpkg -L bpfcc-tools | grep sbin/opensnoop
+/usr/sbin/opensnoop-bpfcc
+$ sudo /usr/sbin/opensnoop-bpfcc
+PID    COMM               FD ERR PATH
+810    vminfo              6   0 /var/run/utmp
+601    dbus-daemon        -1   2 /usr/local/share/dbus-1/system-services
+601    dbus-daemon        18   0 /usr/share/dbus-1/system-services
+601    dbus-daemon        -1   2 /lib/dbus-1/system-services
+601    dbus-daemon        18   0 /var/lib/snapd/dbus-1/system
 
 6)Какой системный вызов использует uname -a? Приведите цитату из man по этому системному вызову, где описывается альтернативное местоположение в /proc, где можно узнать версию ядра и релиз ОС.
 
+Системный вызов: uname()
+uname({sysname="Linux", nodename="vagrant", ...}) = 0
+Цитата:
+Part of the utsname information is also accessible  via  /proc/sys/kernel/{ostype, hostname, osrelease, version, domainname}.
 
 7)Чем отличается последовательность команд через ; и через && в bash? Например:
 root@netology1:~# test -d /tmp/some_dir; echo Hi
@@ -49,10 +65,29 @@ root@netology1:~# test -d /tmp/some_dir && echo Hi
 root@netology1:~#
 Есть ли смысл использовать в bash &&, если применить set -e?
 
-
+ ; применяется для последовательного выполнения команд независимо от правильности выполнения предыдущей команды
+ && применяется для последовательного выполнения команд только при успешном выполнении предыдущей команды
+ set -e прерывает выполенние при любом неправильном(не нулевом) выполнении команды
 
 8)Из каких опций состоит режим bash set -euxo pipefail и почему его хорошо было бы использовать в сценариях?
 
+-e прерывает выполнение исполнения при ошибке любой команды кроме последней в последовательности 
+-x вывод трейса простых команд 
+-u неустановленные/не заданные параметры и переменные считаются как ошибки, с выводом в stderr текста ошибки и выполнит завершение неинтерактивного вызова
+-o pipefail возвращает код возврата набора/последовательности команд, ненулевой при последней команды или 0 для успешного выполнения команд.
 
 
 9)Используя -o stat для ps, определите, какой наиболее часто встречающийся статус у процессов в системе. В man ps ознакомьтесь (/PROCESS STATE CODES) что значат дополнительные к основной заглавной буквы статуса процессов. Его можно не учитывать при расчете (считать S, Ss или Ssl равнозначными).
+
+$ ps -o stat
+STAT
+Ss
+T
+S
+R+
+
+Самые частые S* (S,Ss) - процессы ожидающие завершения (спящие с прерыванием "сна") 
+ S    interruptible sleep (waiting for an event to complete)
+доп символы это доп характеристики, например приоритет.
+ s    is a session leader
+ +    is in the foreground process group
