@@ -35,7 +35,8 @@ Ansible использует существующую SSH инфраструкт
 Приложить вывод команд установленных версий каждой из программ, оформленный в markdown.  
 ```
 VirtualBox:
-VirtualBox - графическая оболочка - скриншот версии VirtualBox 6.1 https://prnt.sc/26ib0xf
+VirtualBox - графическая оболочка - скриншот версии VirtualBox 6.1 
+
 
 Vagrant:
 vitaliy@DESKTOP-R9GDVOO:~$ vagrant --version                                                                          │
@@ -56,9 +57,15 @@ ansible 2.9.6                                                                   
 Воспроизвести практическую часть лекции самостоятельно.  
 - Создать виртуальную машину.  
 - Зайти внутрь ВМ, убедиться, что Docker установлен с помощью команды  
+```
+как я понял под Виндос эту связку вряд ли получится запустить (по сообщениям в чате и на странице задания)  
+надо запускать под нативным Linux, если будет время, попробую.
 
+Сейчас это задание пропускаю как необязательное.
 ```
-работаю из под Windows, пытался сделать вложеную виртуалзиацию через VitrualBox - не получилось (еще разбираюсь)
-на Яндекс облаке нет поддержки вложеной виртуализации (ответ технической поддержки облака)
-поэтому покачто пропускаю 
-```
+
+небольшой совет по поводу второй домашки по виртуализации. Для тех у коого windows хост можно запустить ansible непосредственно с виртуалки https://github.com/vovimayhem/vagrant-guest_ansible
+
+GitHub (https://github.com/vovimayhem/vagrant-guest_ansible)
+GitHub - vovimayhem/vagrant-guest_ansible: Running Ansible in Vagrant Guests
+Running Ansible in Vagrant Guests. Contribute to vovimayhem/vagrant-guest_ansible development by creating an account on GitH
