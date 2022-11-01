@@ -1,0 +1,10 @@
+#cloud-config
+users:
+  - name: root
+    groups: sudo
+    shell: /bin/bash
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    ssh_authorized_keys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCtkhfBhuBszGFuZH4+033VNCm1xNCnLd2og5t4havjXbAUUDqAP5A+1pQsoGlPGLu/eiws9U27rqfFiRrMJW/F+zmGCWq7c6c38+nGAcWx1lRK6QxEwJoT95eFTPUGTKuADzN7pzWWJ/U92LQr7VThBUsJZ37SgdUPWZTrUZyYKvicfX74elAmtEo7Nc0S5aNGHl+soRtmFmIyJfQjZnLx9aPk3FBxBaw9FCrfsmFlkPvKYAUZowlXvYBchYQJ6AtieN6eIsQnFpNZpz4AhH+TADFGpHCX/HhE+fkLOrowwf2NYmi2M/FNAIksppbUoGpuOYNtYfKKLGCKHwKQk8Op root@autolab72.store
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDInSnBm/+IbLepxV1HDJ88dZs79DZbMkeky2SJBU3b7gONq+llD6wrjAg4zcRnj4iIudwREfiKNMqWO9D5kxCc49AIkDtHLsX+QiXLf4fdADKDBFJ/3ERqkNpPi9zb4ISzVvlLXVjF/1Ru/3flLbQBFnR92wNwRogz/jhH0H7o5dKSl4Di0nhjKzH9i8qo++LVIdUGRrcT+bZVl7CsIL4jh3k9AZ03n/KxaTHtcNSRU2ehDjTIPjT0ZAfOe4TXbd8QUI0EKL1qU/Ww5nuoYiajK5SjYm5uktZYR1GPZLzzvsS0PUasXiTdjRa5mGlGMye/YRy2QTGzslavILPBMZ15ihllOixhDYB9hP6Egd2pAeVyPV02ecgak8JnHafS1aiO+yRcfD6Gdk6uR1WbAxOP0OMFgfqyXnm03/Ulh/B5C/C1yzkgepEOkJ+nsi5Dq5UKocaiEZjXSLojkr7Y9Fk88hTcMPhyxljj8B71xTVA6+TrGFlKDUVGqoTwMvYqElE= latyp@DESKTOP-R9GDVOO
+
