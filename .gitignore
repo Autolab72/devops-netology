@@ -1,13 +1,18 @@
 #gitignore files
 .idea
 
+# Kubespray
+kubespray
+
 # Local .terraform directories
 **/.terraform/*
+**/.terraform.*/*
 
 # .tfstate files
 *.tfstate
 *.tfstate.*
-
+**/*.tfstate.*/*
+**/*.tfstate./*
 # Crash log files
 crash.log
 
@@ -35,3 +40,15 @@ override.tf.json
 # Ignore CLI configuration files
 .terraformrc
 terraform.rc
+
+# Terraform init
+.terraform.lock.hcl
+
+# Yandex Cloud credentials
+key.json
+
+# Файлы Ansible формируются терраформом  
+ansible/*
+
+# Конфигурационные файлы для доступа к кластерам Кубернетес
+kubeconfig/*
